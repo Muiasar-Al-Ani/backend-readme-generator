@@ -71,7 +71,12 @@ fs.writeFile(fileName, generateMarkdown({ ...data }), err => {
 }
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+  inquirer.prompt(questions)
+  .then((data) => {
+    writeFile('README.md', data)
+  })
+}
 
 // Function call to initialize app
 init();
