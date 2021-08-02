@@ -40,7 +40,7 @@ const questions = [
     type: "input",
     name: "technologies",
     message:
-      "Please list all the technologies used in your Project separated by "/"",
+      "Please list all the technologies used in your Project separated by /",
   },
   {
     type: "input",

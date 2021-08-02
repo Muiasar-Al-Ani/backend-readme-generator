@@ -7,10 +7,12 @@ function renderLicenseBadge(data) {
       licenseBadge = "https://img.shields.io/badge/License-MIT-yellow.svg";
       break;
     case "Apache 2.0 License":
-      licenseBadge = "https://img.shields.io/badge/License-Apache%202.0-blue.svg";
+      licenseBadge =
+        "https://img.shields.io/badge/License-Apache%202.0-blue.svg";
       break;
     case "Boost Software License 1.0":
-      licenseBadge = "https://img.shields.io/badge/License-Boost%201.0-lightblue.svg";
+      licenseBadge =
+        "https://img.shields.io/badge/License-Boost%201.0-lightblue.svg";
       break;
     case "The Unlicense":
       licenseBadge = "https://img.shields.io/badge/license-Unlicense-blue.svg";
@@ -19,10 +21,12 @@ function renderLicenseBadge(data) {
       licenseBadge = "https://img.shields.io/badge/License-Perl-0298c3.svg";
       break;
     case "The Artistic License 2.0":
-      licenseBadge = "https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg";
+      licenseBadge =
+        "https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg";
       break;
     case "Mozilla Public License 2.0":
-      licenseBadge = "https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg";
+      licenseBadge =
+        "https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg";
       break;
     case "ISC License (ISC)":
       licenseBadge = "https://img.shields.io/badge/License-ISC-blue.svg";
@@ -76,13 +80,13 @@ function renderLicenseLink(data) {
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(data) {
-  if (data.licenses !== undefined) {
+function renderLicenseSection(licenses) {
+  if (licenses !== undefined) {
     let licenseBadges = "";
-    for (var i = 0; i < data.licenses.length; i++) {
+    for (var i = 0; i < licenses.length; i++) {
       licenseBadges += `[![License](${renderLicenseBadge(
-        data.licenses[i]
-      )})](${renderLicenseLink(data.licenses[i])})
+        licenses[i]
+      )})](${renderLicenseLink(licenses[i])})
 `;
     }
     return licenseBadges;
@@ -101,41 +105,55 @@ function renderTechnologies(technologies) {
 }
 function renderScreenShots(data) {
   let screenShotRenders = "";
-  if (data.screenShots.length > 1){
-    screenShotRenders += `### Here are screen shots of my deployed ${data.title}!`
-  data.screenShots.split(" ").forEach(screenShot => {
-    screenShotRenders += `![ScreenShot](${screenShot})`;
-  });
-}
+  
+  if (data.screenShots !== undefined) {
+    screenShotRenders += `### Here are screen shots of my deployed ${data.title}!`;
+    data.screenShots.split(" ").forEach(screenShot => {
+      screenShotRenders += `![ScreenShot](${screenShot})`;
+    });
+  }
   return screenShotRenders;
 }
 
 function renderCreditors(creditors) {
   let creditorsRender = "";
-  if(creditors.length > 1){
+  if (creditors.length > 1) {
     creditorsRender += `## Credits
-`
-  creditors.split("/").forEach(creditor => {
-    creditorsRender += `
-- https://github.com/${creditor}`
-  })}
+`;
+    creditors.split("/").forEach(creditor => {
+      creditorsRender += `
+- [${creditor}](https://github.com/${creditor})`;
+    });
+  }
   return creditorsRender;
 }
 
-function renderContributions (contribution){
-  let contributionRender = ""
-  if(contribution === "Yes"){
-    contributionRender += `Contributions, issues, and feature requests are welcome!
-    Give a ⭐️ if you like this project!`
+function renderContributions(contribution) {
+  let contributionRender = "";
+  if (contribution === "Yes") {
+    contributionRender += `## contributions :
+    Contributions, issues, and feature requests are welcome!
+    Give a ⭐️ if you like this project!`;
   }
   return contributionRender;
 }
 
-function renderLiveLink (data) {
+function renderLiveLink(data) {
   let liveLinkRender = "";
-  if(data.liveLink.length > 1){
-    liveLinkRender += `[Click here to see the running ${data.title}!](${data.liveLink})`
+  if (data.liveLink.length > 1) {
+    liveLinkRender += `[Click here to see the running ${data.title}!](${data.liveLink})`;
   }
+  return liveLinkRender;
+}
+
+function renderInstallationSection(command){
+  let installationSection = ""
+  installationSection = `
+\`\`\`
+${command}
+\`\`\`
+`
+return installationSection;
 }
 
 // TODO: Create a function to generate markdown for README
@@ -147,15 +165,15 @@ function generateMarkdown(data) {
 ${data.description}
 
 ## licenses :
-${renderLicenseSection(data)}
+${renderLicenseSection(data.licenses)}
 
+live
 ${renderLiveLink(data)}
 
 ## Installation : 
 To install this App use the commands bellow &#8595;
-\```
-${data.installation}
-\```
+${renderInstallationSection(data.installation)}
+
 
 ## Usage : 
 ${data.usage}
@@ -166,11 +184,12 @@ ${renderTechnologies(data.technologies)}
 ## screenShots : 
 ${renderScreenShots(data.screenShots)}
 
+[The Demo Video](${data.video})
+
 ${renderCreditors(data.creditors)}
 
-${renderContributions(data.contribution)}
 
-[The Demo Video](${data.video})
+${renderContributions(data.contribution)}
 
 &copy; 2021 [${data.title}](https://github.com/${data.userName})
 `;
