@@ -1,4 +1,4 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
+// This function returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(data) {
   let licenseBadge = "";
@@ -40,7 +40,7 @@ function renderLicenseBadge(data) {
   return licenseBadge;
 }
 
-// TODO: Create a function that returns the license link
+// This function returns a license link based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseLink(data) {
   let licenseLink = "";
@@ -78,7 +78,7 @@ function renderLicenseLink(data) {
   return licenseLink;
 }
 
-// TODO: Create a function that returns the license section of README
+// This function returns the license section of README with as many licenses as the user choses
 // If there is no license, return an empty string
 function renderLicenseSection(licenses) {
   if (licenses !== undefined) {
@@ -95,6 +95,7 @@ function renderLicenseSection(licenses) {
   }
 }
 
+// This function creates a Technologies section with as many technologies as the user choses
 function renderTechnologies(technologies) {
   let techRender = "";
   technologies.split("/").forEach(technology => {
@@ -103,6 +104,8 @@ function renderTechnologies(technologies) {
   });
   return techRender;
 }
+
+// This function creates the screenShot section with as many screenShots as the user inputs
 function renderScreenShots(data) {
   let screenShotRenders = "";
   
@@ -115,6 +118,7 @@ function renderScreenShots(data) {
   return screenShotRenders;
 }
 
+// This function creates the credit section with as many contributors as the user inputs
 function renderCreditors(creditors) {
   let creditorsRender = "";
   if (creditors !== undefined) {
@@ -128,6 +132,8 @@ function renderCreditors(creditors) {
   return creditorsRender;
 }
 
+// This function creates a contribution section if the user choses so!
+// And returns a message that shows that all forms of contributions are welcome!
 function renderContributions(contribution) {
   let contributionRender = "";
   if (contribution === "Yes") {
@@ -138,6 +144,7 @@ function renderContributions(contribution) {
   return contributionRender;
 }
 
+// This function returns a liveLink video of the project if the user enters a link
 function renderLiveLink(data) {
   let liveLinkRender = "";
   if (data.liveLink.length > 1) {
@@ -146,6 +153,7 @@ function renderLiveLink(data) {
   return liveLinkRender;
 }
 
+// This function creates a section in the markdown with installation instructions that the user inputs
 function renderInstallationSection(command){
   let installationSection = ""
   installationSection = `
@@ -156,7 +164,7 @@ ${command}
 return installationSection;
 }
 
-// TODO: Create a function to generate markdown for README
+// This function generates the markdown for README.md based on user's inputs
 function generateMarkdown(data) {
   return `
 # ${data.title}
@@ -194,4 +202,5 @@ ${renderContributions(data.contribution)}
 `;
 }
 
+// Exports the generateMarkdown to be available for other scripts to import
 module.exports = generateMarkdown;
