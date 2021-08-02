@@ -99,17 +99,22 @@ function renderTechnologies(technologies) {
   });
   return techRender;
 }
-function renderScreenShots(screenShots) {
+function renderScreenShots(data) {
   let screenShotRenders = "";
-  screenShots.split(" ").forEach(screenShot => {
+  if (data.screenShots.length > 1){
+    screenShotRenders += `### Here are screen shots of my deployed ${data.title}!`
+  data.screenShots.split(" ").forEach(screenShot => {
     screenShotRenders += `![ScreenShot](${screenShot})`;
   });
+}
   return screenShotRenders;
 }
 
 function renderCreditors(creditors) {
   let creditorsRender = "";
   if(creditors.length > 1){
+    creditorsRender += `## Credits
+`
   creditors.split("/").forEach(creditor => {
     creditorsRender += `
 - https://github.com/${creditor}`
@@ -126,23 +131,48 @@ function renderContributions (contribution){
   return contributionRender;
 }
 
+function renderLiveLink (data) {
+  let liveLinkRender = "";
+  if(data.liveLink.length > 1){
+    liveLinkRender += `[Click here to see the running ${data.title}!](${data.liveLink})`
+  }
+}
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `
 # ${data.title}
 
-## licences : 
+## Description : 
+${data.description}
+
+## licenses :
 ${renderLicenseSection(data)}
+
+${renderLiveLink(data)}
+
+## Installation : 
+To install this App use the commands bellow &#8595;
+\```
+${data.installation}
+\```
+
+## Usage : 
+${data.usage}
+
 ## technologies : 
 ${renderTechnologies(data.technologies)}
+
 ## screenShots : 
 ${renderScreenShots(data.screenShots)}
 
 ${renderCreditors(data.creditors)}
+
 ${renderContributions(data.contribution)}
 
+[The Demo Video](${data.video})
 
-
+&copy; 2021 [${data.title}](https://github.com/${data.userName})
 `;
 }
 
