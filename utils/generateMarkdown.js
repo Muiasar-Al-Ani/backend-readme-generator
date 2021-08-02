@@ -1,77 +1,77 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(data) {
-  let badge = "";
+  let licenseBadge = "";
   switch (data) {
     case "MIT License":
-      badge = "https://img.shields.io/badge/License-MIT-yellow.svg";
+      licenseBadge = "https://img.shields.io/badge/License-MIT-yellow.svg";
       break;
     case "Apache 2.0 License":
-      badge = "https://img.shields.io/badge/License-Apache%202.0-blue.svg";
+      licenseBadge = "https://img.shields.io/badge/License-Apache%202.0-blue.svg";
       break;
     case "Boost Software License 1.0":
-      badge = "https://img.shields.io/badge/License-Boost%201.0-lightblue.svg";
+      licenseBadge = "https://img.shields.io/badge/License-Boost%201.0-lightblue.svg";
       break;
     case "The Unlicense":
-      badge = "https://img.shields.io/badge/license-Unlicense-blue.svg";
+      licenseBadge = "https://img.shields.io/badge/license-Unlicense-blue.svg";
       break;
     case "The Perl License":
-      badge = "https://img.shields.io/badge/License-Perl-0298c3.svg";
+      licenseBadge = "https://img.shields.io/badge/License-Perl-0298c3.svg";
       break;
     case "The Artistic License 2.0":
-      badge = "https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg";
+      licenseBadge = "https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg";
       break;
     case "Mozilla Public License 2.0":
-      badge = "https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg";
+      licenseBadge = "https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg";
       break;
     case "ISC License (ISC)":
-      badge = "https://img.shields.io/badge/License-ISC-blue.svg";
+      licenseBadge = "https://img.shields.io/badge/License-ISC-blue.svg";
       break;
     case "Eclipse Public License 1.0":
-      badge = "https://img.shields.io/badge/License-EPL%201.0-red.svg";
+      licenseBadge = "https://img.shields.io/badge/License-EPL%201.0-red.svg";
       break;
     default:
-      badge = "";
+      licenseBadge = "";
   }
-  return badge;
+  return licenseBadge;
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(data) {
-  let badgeLink = "";
+  let licenseLink = "";
   switch (data) {
     case "MIT License":
-      badgeLink = "https://opensource.org/licenses/MIT";
+      licenseLink = "https://opensource.org/licenses/MIT";
       break;
     case "Apache 2.0 License":
-      badgeLink = "https://opensource.org/licenses/Apache-2.0";
+      licenseLink = "https://opensource.org/licenses/Apache-2.0";
       break;
     case "Boost Software License 1.0":
-      badgeLink = "https://www.boost.org/LICENSE_1_0.txt";
+      licenseLink = "https://www.boost.org/LICENSE_1_0.txt";
       break;
     case "The Unlicense":
-      badgeLink = "http://unlicense.org/";
+      licenseLink = "http://unlicense.org/";
       break;
     case "The Perl License":
-      badgeLink = "https://opensource.org/licenses/Artistic-2.0";
+      licenseLink = "https://opensource.org/licenses/Artistic-2.0";
       break;
     case "The Artistic License 2.0":
-      badgeLink = "https://opensource.org/licenses/Artistic-2.0";
+      licenseLink = "https://opensource.org/licenses/Artistic-2.0";
       break;
     case "Mozilla Public License 2.0":
-      badgeLink = "https://opensource.org/licenses/MPL-2.0";
+      licenseLink = "https://opensource.org/licenses/MPL-2.0";
       break;
     case "ISC License (ISC)":
-      badgeLink = "https://opensource.org/licenses/ISC";
+      licenseLink = "https://opensource.org/licenses/ISC";
       break;
     case "Eclipse Public License 1.0":
-      badgeLink = "https://opensource.org/licenses/EPL-1.0";
+      licenseLink = "https://opensource.org/licenses/EPL-1.0";
       break;
     default:
-      badgeLink = "";
+      licenseLink = "";
   }
-  return badgeLink;
+  return licenseLink;
 }
 
 // TODO: Create a function that returns the license section of README
@@ -85,7 +85,6 @@ function renderLicenseSection(data) {
       )})](${renderLicenseLink(data.licenses[i])})
 `;
     }
-
     return licenseBadges;
   } else {
     return "";
@@ -93,34 +92,54 @@ function renderLicenseSection(data) {
 }
 
 function renderTechnologies(technologies) {
-  console.log(technologies);
   let techRender = "";
   technologies.split("/").forEach(technology => {
-    techRender += `- ${technology}.
-    `;
+    techRender += `
+- ${technology}.`;
   });
   return techRender;
 }
 function renderScreenShots(screenShots) {
   let screenShotRenders = "";
   screenShots.split(" ").forEach(screenShot => {
-    screenShotRenders += `![ScreenShot](${screenShot})
-    `;
+    screenShotRenders += `![ScreenShot](${screenShot})`;
   });
   return screenShotRenders;
 }
 
+function renderCreditors(creditors) {
+  let creditorsRender = "";
+  if(creditors.length > 1){
+  creditors.split("/").forEach(creditor => {
+    creditorsRender += `
+- https://github.com/${creditor}`
+  })}
+  return creditorsRender;
+}
+
+function renderContributions (contribution){
+  let contributionRender = ""
+  if(contribution === "Yes"){
+    contributionRender += `Contributions, issues, and feature requests are welcome!
+    Give a ⭐️ if you like this project!`
+  }
+  return contributionRender;
+}
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title}
+  return `
+# ${data.title}
 
-  ## licences : 
-  ${renderLicenseSection(data)}
-  ## technologies : 
-  ${renderTechnologies(data.technologies)}
-  ## screenShots : 
-  ${renderScreenShots(data.screenShots)}
+## licences : 
+${renderLicenseSection(data)}
+## technologies : 
+${renderTechnologies(data.technologies)}
+## screenShots : 
+${renderScreenShots(data.screenShots)}
 
+${renderCreditors(data.creditors)}
+${renderContributions(data.contribution)}
 
 
 

@@ -12,15 +12,19 @@ const questions = [
   },
   {
     type: "input",
+    name: "userName",
+    message: "Please enter your GitHub user name:",
+  },
+  {
+    type: "input",
     name: "description",
-    massage:
+    message:
       "Please provide a short description explaining the what, why, and how of your project:",
   },
   {
     type: "input",
     name: "liveLink",
-    massage:
-      "Please provide a live link to your Project if it is deployed:",
+    message: "Please provide a live link to your Project if it is deployed:",
   },
   {
     type: "input",
@@ -35,30 +39,31 @@ const questions = [
   {
     type: "input",
     name: "technologies",
-    massage:
-      "Please list all the technologies used in your Project separated by "/"!",
+    message:
+      "Please list all the technologies used in your Project separated by "/"",
   },
   {
     type: "input",
     name: "screenShots",
-    massage:
-      "Please enter links to the screen shots of your Project separated by space!",
+    message:
+      "Please enter links to the screen shots of your Project separated by a space!",
   },
   {
     type: "input",
     name: "video",
-    massage:
-      "Please enter a link to a video demo of your Project:",
+    message: "Please enter a link to a video demo of your Project:",
   },
   {
     type: "input",
-    name: "credits",
-    message: "Please Enter the names of all contributors to your Project (If you worked alone leave empty):",
+    name: "creditors",
+    message:
+      "Please include the contributors GitHub userName of your Project separated by a space!",
   },
   {
-    type: "input",
+    type: "list",
     name: "contribution",
-    message: "Please enter your Project contribution guidelines:",
+    message: "Are contribution, issues, and feature requests welcome?",
+    choices: ["Yes", "No"]
   },
   {
     type: "checkbox",
@@ -73,8 +78,7 @@ const questions = [
       "The Artistic License 2.0",
       "Mozilla Public License 2.0",
       "ISC License (ISC)",
-      "Eclipse Public License 1.0"
-
+      "Eclipse Public License 1.0",
     ],
   },
   {
@@ -86,17 +90,18 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-fs.writeFile(fileName, generateMarkdown(data), err => {
-  err ? console.error(err) : console.log("Your Markdown file has been generated successfully!")
+  fs.writeFile(fileName, generateMarkdown(data), err => {
+    err
+      ? console.error(err)
+      : console.log("Your Markdown file has been generated successfully!");
   });
 }
 
 // TODO: Create a function to initialize app
 function init() {
-  inquirer.prompt(questions)
-  .then((data) => {
-    writeToFile('README.md', data)
-  })
+  inquirer.prompt(questions).then(data => {
+    writeToFile("README.md", data);
+  });
 }
 
 // Function call to initialize app
