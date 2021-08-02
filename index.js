@@ -81,11 +81,6 @@ const questions = [
       "Eclipse Public License 1.0",
     ],
   },
-  {
-    type: "input",
-    name: "tests",
-    message: "Please enter test instructions:",
-  },
 ];
 
 // TODO: Create a function to write README file

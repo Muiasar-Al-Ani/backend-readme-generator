@@ -107,7 +107,7 @@ function renderScreenShots(data) {
   let screenShotRenders = "";
   
   if (data.screenShots !== undefined) {
-    screenShotRenders += `### Here are screen shots of my deployed ${data.title}!`;
+    screenShotRenders += `### Here are screen shots of my deployed ${data.title} App!`;
     data.screenShots.split(" ").forEach(screenShot => {
       screenShotRenders += `![ScreenShot](${screenShot})`;
     });
@@ -117,7 +117,7 @@ function renderScreenShots(data) {
 
 function renderCreditors(creditors) {
   let creditorsRender = "";
-  if (creditors.length > 1) {
+  if (creditors !== undefined) {
     creditorsRender += `## Credits
 `;
     creditors.split("/").forEach(creditor => {
@@ -167,11 +167,10 @@ ${data.description}
 ## licenses :
 ${renderLicenseSection(data.licenses)}
 
-live
 ${renderLiveLink(data)}
 
 ## Installation : 
-To install this App use the commands bellow &#8595;
+To install the ${data.title} App use the instructions bellow &#8595;
 ${renderInstallationSection(data.installation)}
 
 
@@ -182,7 +181,7 @@ ${data.usage}
 ${renderTechnologies(data.technologies)}
 
 ## screenShots : 
-${renderScreenShots(data.screenShots)}
+${renderScreenShots(data)}
 
 [The Demo Video](${data.video})
 
