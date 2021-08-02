@@ -18,6 +18,12 @@ const questions = [
   },
   {
     type: "input",
+    name: "liveLink",
+    massage:
+      "Please provide a live link to your Project if it is deployed:",
+  },
+  {
+    type: "input",
     name: "installation",
     message: "Please enter the installation instructions for your Project:",
   },
@@ -25,6 +31,24 @@ const questions = [
     type: "input",
     name: "usage",
     message: "Please provide instructions and examples for use:",
+  },
+  {
+    type: "input",
+    name: "technologies",
+    massage:
+      "Please list all the technologies used in your Project separated by "/"!",
+  },
+  {
+    type: "input",
+    name: "screenShots",
+    massage:
+      "Please enter links to the screen shots of your Project separated by space!",
+  },
+  {
+    type: "input",
+    name: "video",
+    massage:
+      "Please enter a link to a video demo of your Project:",
   },
   {
     type: "input",
@@ -39,21 +63,18 @@ const questions = [
   {
     type: "checkbox",
     message: "Licensing Options",
-    name: "license",
+    name: "licenses",
     choices: [
-      "MIT Licence",
-      "Apache Licence",
-      "GLP Licence",
-      "Affero GPL",
-      "Artistic License 2.0",
-      "BSD 3-Clause License",
-      "BSD 2-Clause license",
-      "Eclipse Public License v1.0",
-      "GPL v3",
-      "LGPL v2.1",
-      "LGPL v3",
-      "Mozilla Public License v2.0",
-      "Public Domain (Unlicense)",
+      "MIT License",
+      "Apache 2.0 License",
+      "The Unlicense",
+      "Boost Software License 1.0",
+      "The Perl License",
+      "The Artistic License 2.0",
+      "Mozilla Public License 2.0",
+      "ISC License (ISC)",
+      "Eclipse Public License 1.0"
+
     ],
   },
   {
@@ -65,7 +86,7 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-fs.writeFile(fileName, generateMarkdown({ ...data }), err => {
+fs.writeFile(fileName, generateMarkdown(data), err => {
   err ? console.error(err) : console.log("Your Markdown file has been generated successfully!")
   });
 }
@@ -74,7 +95,7 @@ fs.writeFile(fileName, generateMarkdown({ ...data }), err => {
 function init() {
   inquirer.prompt(questions)
   .then((data) => {
-    writeFile('README.md', data)
+    writeToFile('README.md', data)
   })
 }
 
