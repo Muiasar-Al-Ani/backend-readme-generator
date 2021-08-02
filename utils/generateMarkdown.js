@@ -82,33 +82,47 @@ function renderLicenseSection(data) {
     for (var i = 0; i < data.licenses.length; i++) {
       licenseBadges += `[![License](${renderLicenseBadge(
         data.licenses[i]
-      )})](${renderLicenseLink(data.licenses[i])})`;
+      )})](${renderLicenseLink(data.licenses[i])})
+`;
     }
+
     return licenseBadges;
   } else {
     return "";
   }
 }
 
-
 function renderTechnologies(technologies) {
+  console.log(technologies);
   let techRender = "";
   technologies.split("/").forEach(technology => {
-    techRender += `- ${technology}.\s\s`
-  })
+    techRender += `- ${technology}.
+    `;
+  });
+  return techRender;
 }
-function renderScreenShots (screenShots) {
+function renderScreenShots(screenShots) {
   let screenShotRenders = "";
-  screenShots.split(' ').forEach(screenShot => {
-    screenShotRenders += ` ![ScreenShot](${screenShot})\s\s`
-  }) 
+  screenShots.split(" ").forEach(screenShot => {
+    screenShotRenders += `![ScreenShot](${screenShot})
+    `;
+  });
+  return screenShotRenders;
 }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
 
-  licences : ${renderLicenseSection(data)}\s
+  ## licences : 
+  ${renderLicenseSection(data)}
+  ## technologies : 
+  ${renderTechnologies(data.technologies)}
+  ## screenShots : 
+  ${renderScreenShots(data.screenShots)}
+
+
+
 
 `;
 }

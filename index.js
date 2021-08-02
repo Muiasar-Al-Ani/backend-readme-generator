@@ -53,7 +53,7 @@ const questions = [
   {
     type: "input",
     name: "credits",
-    message: "Does this Project has Contributors?",
+    message: "Please Enter the names of all contributors to your Project (If you worked alone leave empty):",
   },
   {
     type: "input",
