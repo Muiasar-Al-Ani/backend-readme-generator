@@ -120,7 +120,7 @@ function renderCreditors(creditors) {
   if (creditors !== undefined) {
     creditorsRender += `## Credits
 `;
-    creditors.split("/").forEach(creditor => {
+    creditors.split(" ").forEach(creditor => {
       creditorsRender += `
 - [${creditor}](https://github.com/${creditor})`;
     });
