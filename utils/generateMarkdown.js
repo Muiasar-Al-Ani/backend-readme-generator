@@ -81,7 +81,7 @@ function renderLicenseLink(data) {
 // This function returns the license section of README with as many licenses as the user choses
 // If there is no license, return an empty string
 function renderLicenseSection(licenses) {
-  if (licenses !== undefined) {
+  if (licenses !== "") {
     let licenseBadges = "";
     for (var i = 0; i < licenses.length; i++) {
       licenseBadges += `[![License](${renderLicenseBadge(
@@ -109,7 +109,7 @@ function renderTechnologies(technologies) {
 function renderScreenShots(data) {
   let screenShotRenders = "";
 
-  if (data.screenShots !== undefined) {
+  if (data.screenShots !== "") {
     screenShotRenders += `### Here are screen shots of my deployed ${data.title} App!`;
     data.screenShots.split(" ").forEach(screenShot => {
       screenShotRenders += `![ScreenShot](${screenShot})`;
@@ -121,12 +121,12 @@ function renderScreenShots(data) {
 // This function creates the credit section with as many contributors as the user inputs
 function renderCreditors(creditors) {
   let creditorsRender = "";
-  if (creditors !== undefined) {
-    creditorsRender += `## Credits
+  if (creditors !== "") {
+    creditorsRender += `## Credits :
 `;
     creditors.split(",").forEach(creditor => {
       creditorsRender += `
-- [${creditor}](https://github.com/${creditor})`;
+- [${creditor.trim()}](https://github.com/${creditor.trim()})`;
     });
   }
   return creditorsRender;
@@ -154,14 +154,14 @@ function renderLiveLink(data) {
 }
 
 // This function creates a section in the markdown with installation instructions that the user inputs
-function renderInstallationSection(instructions) {
+function renderInstallationSection(data) {
   let installationSection = "";
-  if(instructions !== undefined) {
-  installationSection = `
+  if (data.installation !== "") {
+    installationSection = `
 ## Installation : 
 To install the ${data.title} App use the instructions bellow &#8595;
 \`\`\`
-${instructions}
+${data.installation}
 \`\`\`
 `;
   }
@@ -169,21 +169,54 @@ ${instructions}
 }
 
 // This function creates a section in the markdown with test instructions if the user enters the test instructions
-function renderTestSection(instructions) {
+function renderTestSection(test) {
   let testSection = "";
-  if (instructions !== undefined) {
-    
+  if (test !== "") {
     testSection += `
-## Test:
-${instructions}`;
+## Test :
+${test}`;
   }
   return testSection;
+}
+
+function renderTableOfContents(data) {
+  tableOfContents = `
+- [Description](#description)
+- [Licenses](#licenses)
+`;
+  if (data.installation !== "") {
+    tableOfContents += `- [Installation](#installation)
+`;
+  }
+  tableOfContents += `- [Usage](#usage)
+- [Technologies](#technologies)
+- [Screen shots](#screen-shots)
+`;
+  if (data.creditors !== "") {
+    tableOfContents += `- [Credits](#credits)
+`;
+  }
+
+  if (data.contribution !== "") {
+    tableOfContents += `- [Contributions](#contributions)
+`;
+  }
+  if (data.test !== "") {
+    tableOfContents += `- [Test](#test)
+`;
+  }
+  tableOfContents += `- [Questions](#questions)
+`;
+  return tableOfContents;
 }
 
 // This function generates the markdown for README.md based on user's inputs
 function generateMarkdown(data) {
   return `
 # ${data.title}
+
+## Table of Contents
+${renderTableOfContents(data)}
 
 ## Description : 
 ${data.description}
@@ -193,7 +226,7 @@ ${renderLicenseSection(data.licenses)}
 
 ${renderLiveLink(data)}
 
-${renderInstallationSection(data.installation)}
+${renderInstallationSection(data)}
 
 
 ## Usage : 
@@ -214,7 +247,7 @@ ${renderContributions(data.contribution)}
 
 ${renderTestSection(data.test)}
 
-## Question : 
+## Questions : 
 If you have any Question please feel free to contact me:
 - ${data.email}
 - [${data.userName}](https://github.com/${data.userName})
