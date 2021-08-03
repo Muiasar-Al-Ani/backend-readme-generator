@@ -168,6 +168,7 @@ ${instructions}
   return installationSection;
 }
 
+// This function creates a section in the markdown with test instructions if the user enters the test instructions
 function renderTestSection(instructions) {
   let testSection = "";
   if (instructions !== undefined) {
