@@ -1,9 +1,9 @@
 // Include all packages needed for this application
-// The inquirer package is needed to get user input from the terminal 
+// The inquirer package is needed to get user input from the terminal
 const inquirer = require("inquirer");
 // The fs package is needed to write a file to the file system
 const fs = require("fs");
-// The generateMarkdown.js is where most of our logic for the markdown 
+// The generateMarkdown.js is where most of our logic for the markdown
 const generateMarkdown = require("./utils/generateMarkdown");
 
 //  An array of questions for user input
@@ -17,6 +17,11 @@ const questions = [
     type: "input",
     name: "userName",
     message: "Please enter your GitHub user name:",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "Please enter your Email address:",
   },
   {
     type: "input",
@@ -43,7 +48,7 @@ const questions = [
     type: "input",
     name: "technologies",
     message:
-      "Please list all the technologies used in your Project separated by /",
+      "Please list all the technologies used in your Project separated by Comma!",
   },
   {
     type: "input",
@@ -60,13 +65,18 @@ const questions = [
     type: "input",
     name: "creditors",
     message:
-      "Please include the contributors GitHub userName of your Project separated by a space!",
+      "Please include the contributors GitHub userName of your Project separated by Comma!",
+  },
+  {
+    type: "input",
+    message: "Please provide any tests written for your application:",
+    name: "test",
   },
   {
     type: "list",
     name: "contribution",
     message: "Are contribution, issues, and feature requests welcome?",
-    choices: ["Yes", "No"]
+    choices: ["Yes", "No"],
   },
   {
     type: "checkbox",

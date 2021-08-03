@@ -98,7 +98,7 @@ function renderLicenseSection(licenses) {
 // This function creates a Technologies section with as many technologies as the user choses
 function renderTechnologies(technologies) {
   let techRender = "";
-  technologies.split("/").forEach(technology => {
+  technologies.split(",").forEach(technology => {
     techRender += `
 - ${technology}.`;
   });
@@ -108,7 +108,7 @@ function renderTechnologies(technologies) {
 // This function creates the screenShot section with as many screenShots as the user inputs
 function renderScreenShots(data) {
   let screenShotRenders = "";
-  
+
   if (data.screenShots !== undefined) {
     screenShotRenders += `### Here are screen shots of my deployed ${data.title} App!`;
     data.screenShots.split(" ").forEach(screenShot => {
@@ -124,7 +124,7 @@ function renderCreditors(creditors) {
   if (creditors !== undefined) {
     creditorsRender += `## Credits
 `;
-    creditors.split(" ").forEach(creditor => {
+    creditors.split(",").forEach(creditor => {
       creditorsRender += `
 - [${creditor}](https://github.com/${creditor})`;
     });
@@ -137,7 +137,7 @@ function renderCreditors(creditors) {
 function renderContributions(contribution) {
   let contributionRender = "";
   if (contribution === "Yes") {
-    contributionRender += `## contributions :
+    contributionRender += `## Contributions :
     Contributions, issues, and feature requests are welcome!
     Give a ⭐️ if you like this project!`;
   }
@@ -154,14 +154,29 @@ function renderLiveLink(data) {
 }
 
 // This function creates a section in the markdown with installation instructions that the user inputs
-function renderInstallationSection(command){
-  let installationSection = ""
+function renderInstallationSection(instructions) {
+  let installationSection = "";
+  if(instructions !== undefined) {
   installationSection = `
+## Installation : 
+To install the ${data.title} App use the instructions bellow &#8595;
 \`\`\`
-${command}
+${instructions}
 \`\`\`
-`
-return installationSection;
+`;
+  }
+  return installationSection;
+}
+
+function renderTestSection(instructions) {
+  let testSection = "";
+  if (instructions !== undefined) {
+    
+    testSection += `
+## Test:
+${instructions}`;
+  }
+  return testSection;
 }
 
 // This function generates the markdown for README.md based on user's inputs
@@ -172,23 +187,21 @@ function generateMarkdown(data) {
 ## Description : 
 ${data.description}
 
-## licenses :
+## Licenses :
 ${renderLicenseSection(data.licenses)}
 
 ${renderLiveLink(data)}
 
-## Installation : 
-To install the ${data.title} App use the instructions bellow &#8595;
 ${renderInstallationSection(data.installation)}
 
 
 ## Usage : 
 ${data.usage}
 
-## technologies : 
+## Technologies : 
 ${renderTechnologies(data.technologies)}
 
-## screenShots : 
+## Screen shots : 
 ${renderScreenShots(data)}
 
 [The Demo Video](${data.video})
@@ -197,6 +210,15 @@ ${renderCreditors(data.creditors)}
 
 
 ${renderContributions(data.contribution)}
+
+${renderTestSection(data.test)}
+
+## Question : 
+If you have any Question please feel free to contact me:
+- ${data.email}
+- [${data.userName}](https://github.com/${data.userName})
+
+
 
 &copy; 2021 [${data.title}](https://github.com/${data.userName})
 `;
