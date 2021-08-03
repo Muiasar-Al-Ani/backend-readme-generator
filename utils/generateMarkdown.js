@@ -179,6 +179,8 @@ ${test}`;
   return testSection;
 }
 
+// This function creates a section in the markdown for the table of Contents 
+// And checks if the section is missing then no need to add it to the table 
 function renderTableOfContents(data) {
   tableOfContents = `
 - [Description](#description)
