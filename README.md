@@ -44,7 +44,7 @@ The user needs to run npm install command in the terminal to install the decenci
 
 
 ## Screen shots : 
-### Here are screen shots of my deployed Back-end-README-Generator App!![ScreenShot](./screenshots/Screenshot_1.png)![ScreenShot](./screenShots/Screenshot_2.png)
+### Here are screen shots of my deployed Back-end-README-Generator App!![ScreenShot](https://github.com/Muiasar-Al-Ani/Backend-README-Generator/blob/main/screenShots/Screenshot_1.png)![ScreenShot](https://github.com/Muiasar-Al-Ani/Backend-README-Generator/blob/main/screenShots/Screenshot_2.png)
 
 [The Demo Video](https://drive.google.com/file/d/1n9Q2OiCog1hVUjo4IV34cNK8Pv1pO2I_/view?usp=sharing)
 
