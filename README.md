@@ -4,14 +4,14 @@
 ## Table of Contents
 
 - [Description](#description-)
-- [Licenses](#licenses)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Technologies](#technologies)
-- [Screen shots](#screen-shots)
-- [Credits](#credits)
-- [Contributions](#contributions)
-- [Questions](#questions)
+- [Licenses](#licenses-)
+- [Installation](#installation-)
+- [Usage](#usage-)
+- [Technologies](#technologies-)
+- [Screen shots](#screen-shots-)
+- [Credits](#credits-)
+- [Contributions](#contributions-)
+- [Questions](#questions-)
 
 
 ## Description : 
